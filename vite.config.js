@@ -4,7 +4,7 @@ import cesium from 'vite-plugin-cesium';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/OceanView/',
   plugins: [react(), cesium()],
   server: {
     port: 5173,

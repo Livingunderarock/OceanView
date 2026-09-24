@@ -1,0 +1,51 @@
+{
+  "datasets": [
+    {
+      "id": "SDC_GLO_CLIM_TS_V2_2",
+      "name": "SeaDataNet Global Ocean 4D Climatology & Analysis",
+      "provider": "SeaDataNet / Coriolis",
+      "type": "GRIDDED_OCEAN_MODEL",
+      "dataState": "MODELED",
+      "variables": ["temperature", "salinity"],
+      "spatialResolution": "0.25°",
+      "depthLevels": 36,
+      "timeSteps": 12
+    },
+    {
+      "id": "ArgoFloats",
+      "name": "Coriolis Argo Float Profiling Array",
+      "provider": "International Argo Programme / Ifremer",
+      "type": "IN_SITU_OBSERVATION",
+      "dataState": "OBSERVED",
+      "variables": ["temperature", "salinity", "pressure"],
+      "coverage": "Global / Indian Ocean"
+    },
+    {
+      "id": "INCOIS_OceanGliders",
+      "name": "INCOIS Autonomous Underwater Glider Missions",
+      "provider": "INCOIS / OceanGliders",
+      "type": "GLIDER_TRAJECTORY",
+      "dataState": "OBSERVED",
+      "variables": ["temperature", "salinity", "density"],
+      "coverage": "Bay of Bengal"
+    },
+    {
+      "id": "SagarKanya_CTD",
+      "name": "ORV Sagar Kanya Shipboard CTD Rosette Stations",
+      "provider": "INCOIS / NIO / SeaDataNet",
+      "type": "CTD_STATIONS",
+      "dataState": "OBSERVED",
+      "variables": ["temperature", "salinity", "dissolved_oxygen"],
+      "coverage": "Arabian Sea"
+    },
+    {
+      "id": "BGC_Argo",
+      "name": "Biogeochemical Argo Float Array",
+      "provider": "Global BGC-Argo GDAC",
+      "type": "BGC_IN_SITU",
+      "dataState": "OBSERVED",
+      "variables": ["chlorophyll_a", "dissolved_oxygen"],
+      "coverage": "Indian Ocean Basin"
+    }
+  ]
+}

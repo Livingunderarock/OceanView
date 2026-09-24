@@ -1,0 +1,7 @@
+{
+  "status": "HEALTHY",
+  "service": "OceanView Scientific Data Engine",
+  "mode": "EMBEDDED_CLIENT_ENGINE",
+  "environment": "GitHub Pages (Static Deployment)",
+  "timestamp": "2026-09-24T00:00:00.000Z"
+}

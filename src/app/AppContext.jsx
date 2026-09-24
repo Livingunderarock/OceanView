@@ -34,7 +34,44 @@ import { ColorScaleManager } from '../visualization/color/ColorScaleManager.js';
 
 const API_BASE = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) || '';
 
+let serverReachable = null;
+
+async function isBackendReachable() {
+  if (serverReachable !== null) return serverReachable;
+  if (API_BASE) {
+    serverReachable = true;
+    return true;
+  }
+  if (typeof window !== 'undefined') {
+    // If hosted on GitHub Pages or file protocol, no Express server exists at /api
+    if (window.location.hostname.endsWith('github.io') || window.location.protocol === 'file:') {
+      serverReachable = false;
+      return false;
+    }
+    // Local dev: fast check if Express proxy/server is responding
+    try {
+      const probe = new AbortController();
+      const timer = setTimeout(() => probe.abort(), 350);
+      const res = await fetch('/api/health', { signal: probe.signal });
+      clearTimeout(timer);
+      serverReachable = res.ok;
+      return serverReachable;
+    } catch {
+      serverReachable = false;
+      return false;
+    }
+  }
+  serverReachable = false;
+  return false;
+}
+
 async function safeFetchJson(endpoint, fallbackFn, timeoutMs = 2500) {
+  // If backend is not available (e.g. static hosting on GitHub Pages), run client backend engine immediately
+  const hasServer = await isBackendReachable();
+  if (!hasServer) {
+    return await fallbackFn();
+  }
+
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
